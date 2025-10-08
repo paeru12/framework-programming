@@ -7,6 +7,7 @@
 
 <body>
     <h1>Detail Warga</h1>
+    <a href="{% url 'pengaduan-tambah' warga.id %}">Tambah Pengaduan</a>
 
     <p><strong>Nama Lengkap:</strong> {{ object.nama_lengkap }}</p>
     <p><strong>NIK:</strong> {{ object.nik }}</p>
