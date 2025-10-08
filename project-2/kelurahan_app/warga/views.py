@@ -16,19 +16,12 @@ class PengaduanCreateView(CreateView):
     template_name = 'warga/pengaduan_form.html'
 
     def form_valid(self, form):
-        # Ambil ID warga dari URL
         warga_id = self.kwargs['warga_id']
-
-        # Isi otomatis pelapor
         form.instance.pelapor_id = warga_id
-        
-        # (opsional) set status default
         form.instance.status = 'Belum Diproses'
-
         return super().form_valid(form)
 
     def get_success_url(self):
-        # Setelah berhasil, arahkan kembali ke detail warga
         return reverse_lazy('warga-detail', kwargs={'pk': self.kwargs['warga_id']})
 
     def get_context_data(self, **kwargs):
