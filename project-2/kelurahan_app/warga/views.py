@@ -25,7 +25,6 @@ class PengaduanCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        # setelah pengaduan dibuat, kembali ke detail warga
         return reverse_lazy('warga-detail', kwargs={'pk': self.kwargs['warga_id']})
 
     def get_context_data(self, **kwargs):
