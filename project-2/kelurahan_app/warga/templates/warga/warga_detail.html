@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Detail Warga</title>
 </head>
-
 <body>
     <h1>Detail Warga</h1>
-    <a href="{% url 'pengaduan-tambah' warga.id %}">Tambah Pengaduan</a>
+    <a href="{% url 'pengaduan-tambah' object.id %}">Tambah Pengaduan</a>
 
     <p><strong>Nama Lengkap:</strong> {{ object.nama_lengkap }}</p>
     <p><strong>NIK:</strong> {{ object.nik }}</p>
@@ -22,6 +20,9 @@
         <li>
             <strong>{{ aduan.judul }}</strong> ({{ aduan.get_status_display }})
             <p>{{ aduan.deskripsi }}</p>
+
+            <a href="{% url 'pengaduan-edit' aduan.id %}">Edit</a> |
+            <a href="{% url 'pengaduan-hapus' aduan.id %}">Hapus</a>
         </li>
         {% empty %}
         <li>Warga ini belum pernah membuat pengaduan.</li>
@@ -30,5 +31,4 @@
 
     <p><a href="{% url 'warga-list' %}">Kembali ke Daftar Warga</a></p>
 </body>
-
 </html>
