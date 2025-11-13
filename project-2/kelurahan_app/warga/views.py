@@ -2,7 +2,9 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Warga, Pengaduan
 from .forms import PengaduanForm
-
+# from rest_framework.generics import ListAPIView, RetrieveAPIView
+from .serializers import WargaSerializer, PengaduanSerializer
+from rest_framework import viewsets
 class WargaListView(ListView):
     model = Warga
     template_name = 'warga/warga_list.html'
@@ -60,3 +62,29 @@ class PengaduanDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('warga-detail', kwargs={'pk': self.object.pelapor.pk})
+
+class WargaViewSet(viewsets.ModelViewSet):
+    queryset = Warga.objects.all()
+    serializer_class = WargaSerializer
+    
+class PengaduanViewSet(viewsets.ModelViewSet):
+    queryset = Pengaduan.objects.all()
+    serializer_class = PengaduanSerializer
+
+# class WargaListAPIView(ListAPIView):
+#     queryset = Warga.objects.all()
+#     serializer_class = WargaSerializer
+
+# class WargaDetailAPIView(RetrieveAPIView):
+#     queryset = Warga.objects.all()
+#     serializer_class = WargaSerializer
+
+# class PengaduanListlAPIView(ListAPIView):
+#     queryset = Pengaduan.objects.all()
+#     serializer_class = PengaduanSerializer
+
+# class PengaduanDetaillAPIView(RetrieveAPIView):
+#     queryset = Pengaduan.objects.all()
+#     serializer_class = PengaduanSerializer
+
+
